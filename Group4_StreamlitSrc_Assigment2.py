@@ -467,4 +467,6 @@ loaded_model = pickle.load(open(f"{path}/models/rf_model.sav", "rb"))
 
 result = loaded_model.predict(x_test)
 
-st.write(f"We're predicting {result[0].round(0)} rentals for the given parameters.")
+st.write(f"""
+We're predicting :red[{result[0].round(0)}] rentals for the given parameters.
+""")
