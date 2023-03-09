@@ -392,7 +392,7 @@ columns = [
     "hr",
     "holiday",
     "workingday",
-    "temp",
+    "atemp",
     "hum",
     "windspeed",
     "daylight_hrs",
@@ -458,6 +458,9 @@ for i in range(12):
         x_test["mnth_" + str(i + 1)] = 1
     else:
         x_test["mnth_" + str(i + 1)] = 0
+
+x_test["night_hr"] = 0 if (hr < 7 | hr == 23) else 1
+x_test["peak_hr"] = 1 if hr in [7, 8, 9, 16, 17, 18, 19] else 0
 
 x_test = pd.DataFrame(x_test, index=[0])
 
