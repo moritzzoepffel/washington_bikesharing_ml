@@ -294,6 +294,7 @@ st.write("### Bike Sharing Demand by Date")
 
 # use ff to create timeseries plot
 fig = px.line(data, x="dteday", y="cnt")
+fig.update_layout(xaxis_rangeslider_visible=True)
 st.plotly_chart(fig)
 
 ################# PREDCITION PROCESS #################
