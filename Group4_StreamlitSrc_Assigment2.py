@@ -132,7 +132,7 @@ st.header("3. Outlier Detection")
 
 data_outliers = raw_data[
     np.abs(raw_data["cnt"] - raw_data["cnt"].mean()) >= (2.5 * raw_data["cnt"].std())
-    ]
+]
 
 col1, col2, col3 = st.columns(3)
 
@@ -300,11 +300,11 @@ st.plotly_chart(fig)
 
 st.write("# Prediction Process")
 
-st.header("RMSLE")
+st.header("RMSE")
 
-rmsle_frame = pd.read_csv(f"{path}/data/rmsle_frame.csv")
+rmse_frame = pd.read_csv(f"{path}/data/rmse_frame.csv")
 
-st.dataframe(rmsle_frame.sort_values(by="RMSLE", ascending=True).reset_index(drop=True))
+st.dataframe(rmse_frame.sort_values(by="RMSE", ascending=True).reset_index(drop=True))
 
 st.header("Feature Importance")
 fig = plt.figure(figsize=(10, 5))
@@ -467,6 +467,8 @@ loaded_model = pickle.load(open(f"{path}/models/rf_model.sav", "rb"))
 
 result = loaded_model.predict(x_test)
 
-st.write(f"""
+st.write(
+    f"""
 We're predicting :red[{result[0].round(0)}] rentals for the given parameters.
-""")
+"""
+)
