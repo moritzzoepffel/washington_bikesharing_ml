@@ -4,13 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-import plotly.graph_objects as go
 import pickle
-import plotly.figure_factory as ff
+import os
 
 # Read the data
-raw_data = pd.read_csv("data/bike-sharing_hourly.csv")
-data = pd.read_csv("data/bike-sharing_hourly_cleaned.csv")
+path = os.path.dirname(__file__)
+raw_data = pd.read_csv(f"{path}/data/bike-sharing_hourly.csv")
+data = pd.read_csv(f"{path}/data/bike-sharing_hourly_cleaned.csv")
 
 data["dteday"] = pd.to_datetime(data["dteday"], format="%Y-%m-%d").dt.date
 
@@ -302,13 +302,13 @@ st.write("# Prediction Process")
 
 st.header("RMSLE")
 
-rmsle_frame = pd.read_csv("data/rmsle_frame.csv")
+rmsle_frame = pd.read_csv(f"{path}/data/rmsle_frame.csv")
 
 st.dataframe(rmsle_frame.sort_values(by="RMSLE", ascending=True).reset_index(drop=True))
 
 st.header("Feature Importance")
 fig = plt.figure(figsize=(10, 5))
-feat_importances = pd.read_csv("data/feat_importances.csv")
+feat_importances = pd.read_csv(f"{path}/data/feat_importances.csv")
 most_important = feat_importances.sort_values(by="0", ascending=False).head(10)
 fig = px.bar(most_important, x="0", y="index", orientation="h")
 st.plotly_chart(fig)
@@ -463,7 +463,7 @@ x_test = pd.DataFrame(x_test, index=[0])
 
 st.dataframe(x_test)
 
-loaded_model = pickle.load(open("models/rf_model.sav", "rb"))
+loaded_model = pickle.load(open(f"{path}/models/rf_model.sav", "rb"))
 
 result = loaded_model.predict(x_test)
 
