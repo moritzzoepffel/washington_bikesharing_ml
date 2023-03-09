@@ -1,0 +1,5 @@
+Modelling Algo,RMSLE
+RandomForestRegressor,0.3548874352089122
+AdaBoostRegressor,1.0534223284626902
+BaggingRegressor,0.36927203314205687
+KNeighborsRegressor,0.4438903642371341
